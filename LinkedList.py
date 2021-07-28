@@ -34,11 +34,11 @@ class LinkedList(object):
         print("\n")
         while (temp):
 
-            print (temp.data,end=" -->")
+            print (temp.data,end=" ")
             temp = temp.next
 
     def deletefromBegining(self):
-        if self.length ==0:
+        if self.length == 0:
             return
         else:
             self.head = self.head.next
@@ -56,9 +56,40 @@ class LinkedList(object):
             previous.next  = None
             self.length -=1
 
+    def reorderList(self):
+        # step1 : find middle
+        if not self.head: return []
+        slow, fast = self.head, self.head
+
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # step2 : reverse the second the half
+        prev, curr = None, slow.next
+        while curr:
+            nextt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextt
+        slow.next = None
+
+        # step3 : merge list
+        head1, head2 = self.head, prev
+        while head2:
+            nextt = head1.next
+            head1.next = head2
+            head1 = head2
+            head2 = nextt
+
+
 linkedlist = LinkedList()
-linkedlist.insertAtBegining("Nandakishor")
-linkedlist.insertAtBegining("Nandakishor 123")
+linkedlist.insertAtBegining(1)
+linkedlist.insertAtEnd(2)
+linkedlist.insertAtEnd(3)
+linkedlist.insertAtEnd(4)
 linkedlist.printList()
-linkedlist.deletefromEnd()
+linkedlist.reorderList()
 linkedlist.printList()
+#linkedlist.deletefromEnd()
+#linkedlist.printList()

@@ -57,9 +57,7 @@ class LinkedList(object):
             self.length -=1
 
 linkedlist = LinkedList()
-linkedlist.insertAtBegining("Rakshanda")
 linkedlist.insertAtBegining("Nandakishor")
-linkedlist.insertAtBegining("Rakshanda 123")
 linkedlist.insertAtBegining("Nandakishor 123")
 linkedlist.printList()
 linkedlist.deletefromEnd()
